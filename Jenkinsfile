@@ -31,5 +31,11 @@ pipeline {
                 }
             }
         }
+
+        stage('Vérification déploiement') {
+            steps {
+                sh 'curl -s -o /dev/null -w "Code HTTP : %{http_code}\\n" http://juice-shop:3000'
+            }
+        }
     }
 }
