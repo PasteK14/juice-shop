@@ -37,5 +37,15 @@ pipeline {
                 sh 'curl -s -o /dev/null -w "Code HTTP : %{http_code}\\n" http://juice-shop:3000'
             }
         }
+	        stage('Scan dynamique - OWASP ZAP') {
+            steps {
+                sh '''
+                    docker run --rm --network devsecops-net \
+                    -v $(pwd):/zap/wrk/:rw \
+                    ghcr.io/zaproxy/zaproxy:stable \
+                    zap-baseline.py -t http://juice-shop:3000 -r zap-report.html || true
+                '''
+            }
+        }
     }
 }
