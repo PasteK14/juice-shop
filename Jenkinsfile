@@ -41,7 +41,7 @@ pipeline {
             steps {
                 sh '''
                     docker run --rm --network projetdocker_devsecops-net \
-                    -v $(pwd):/zap/wrk/:rw \
+                    -v /var/lib/docker/volumes/projetdocker_jenkins_home/_data/workspace/pipeline-cicd-securise:/zap/wrk/:rw \
                     -u root \
                     ghcr.io/zaproxy/zaproxy:stable \
                     zap-baseline.py -t http://juice-shop:3000 -r zap-report.html -d || true
