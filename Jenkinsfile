@@ -56,7 +56,7 @@ pipeline {
                     keepAll: true,
                     reportDir: '.',
                     reportFiles: 'zap-report.html',
-                    reportName: 'Rapport OWASP ZAP'
+                    reportName: 'Rapport-OWASP-ZAP'
                 ])
             }
         }
