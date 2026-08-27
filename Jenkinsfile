@@ -48,5 +48,17 @@ pipeline {
                 '''
             }
         }
+        stage('Publication des rapports') {
+            steps {
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: '.',
+                    reportFiles: 'zap-report.html',
+                    reportName: 'Rapport OWASP ZAP'
+                ])
+            }
+        }
     }
 }
