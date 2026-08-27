@@ -44,9 +44,10 @@ pipeline {
                     -v $(pwd):/zap/wrk/:rw \
                     -u root \
                     ghcr.io/zaproxy/zaproxy:stable \
-                    zap-baseline.py -t http://juice-shop:3000 -r zap-report.html || true
-                    echo "--- Contenu du dossier après scan ---"
-                    ls -la
+                    zap-baseline.py -t http://juice-shop:3000 -r zap-report.html -d || true
+                    echo "=== Contenu complet du workspace apres scan ==="
+                    find . -type f -newer Jenkinsfile
+                    echo "=== Fin du diagnostic ==="
                 '''
             }
         }
